@@ -1,9 +1,8 @@
-import { ReducerState } from "react";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { ITransaction } from "./../../types/types";
 
 const reducer = (
-  state = <Array<ITransaction>>[],
+  state = [] as Array<ITransaction>,
   action: PayloadAction<ITransaction>
 ) => {
   switch (action.type) {

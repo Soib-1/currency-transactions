@@ -7,7 +7,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actions } from "./../../store/index";
 import { RootState } from "../../store/reducers";
-import { ITransaction } from "../../types/types";
 
 const Homepage = ({}: Types.Props) => {
   const [transactionName, setTransactionName] = useState("");

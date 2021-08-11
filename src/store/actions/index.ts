@@ -18,3 +18,12 @@ export const newTransaction = (transaction: ITransaction) => {
     });
   };
 };
+
+export const deleteTransaction = (transaction: ITransaction) => {
+  return (dispatch: Dispatch<Object>) => {
+    dispatch({
+      type: "deleteTransaction",
+      payload: transaction,
+    });
+  };
+};

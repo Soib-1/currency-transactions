@@ -15,7 +15,10 @@ const Homepage = ({}: Types.Props) => {
   const transactions = useSelector((state: RootState) => state.transaction);
   const dispatch = useDispatch();
 
-  const { changeRate, newTransaction } = bindActionCreators(actions, dispatch);
+  const { changeRate, newTransaction, deleteTransaction } = bindActionCreators(
+    actions,
+    dispatch
+  );
 
   const [{ data, loading, error }] = useAxios(euro2pln);
   if (loading) return <p>Loading...</p>;
@@ -46,16 +49,29 @@ const Homepage = ({}: Types.Props) => {
       <button
         onClick={() =>
           newTransaction({
+            transaction_id:
+              Math.floor(Math.random() * (100000 - 23333)) + 23333 + "",
             name: transactionName,
             amount: transactionAmount,
+            exchangedAmount: +transactionAmount * +exRate + "",
           })
         }
       >
-        The RED button
+        New Transaction
       </button>
       <p>
         {transactions.map((transaction) => (
-          <p>{transaction.name + ": " + transaction.amount}</p>
+          <>
+            <button onClick={() => deleteTransaction(transaction)}>x</button>
+            <p>
+              {"Name: " +
+                transaction.name +
+                " EUR: " +
+                transaction.amount +
+                ", PLN: " +
+                transaction.exchangedAmount}
+            </p>
+          </>
         ))}
       </p>
     </>

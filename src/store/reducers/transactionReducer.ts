@@ -7,10 +7,17 @@ const reducer = (
 ) => {
   switch (action.type) {
     case "newTransaction":
-      console.log(state, action.payload);
       return state.concat(action.payload);
+    case "deleteTransaction":
+      return state.filter(
+        (value, index) =>
+          index !==
+          state.findIndex(
+            (transaction) =>
+              transaction.transaction_id === action.payload.transaction_id
+          )
+      );
     default:
-      console.log(action.payload);
       return state;
   }
 };

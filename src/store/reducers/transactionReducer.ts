@@ -10,13 +10,30 @@ const reducer = (
       return state.concat(action.payload);
     case "deleteTransaction":
       return state.filter(
-        (value, index) =>
+        (_, index) =>
           index !==
           state.findIndex(
             (transaction) =>
               transaction.transaction_id === action.payload.transaction_id
           )
       );
+    case "updateTransaction":
+      state.forEach((transaction, index, transactionArray) => {
+        let rateDifference =
+          +action.payload.exchangeRate / +transaction.exchangeRate;
+
+        transactionArray[index].exchangedAmount =
+          (+transaction.exchangedAmount * rateDifference).toFixed(2) + "";
+        transactionArray[index].exchangeRate = action.payload.exchangeRate;
+        console.log(
+          rateDifference,
+          ": ",
+          action.payload.exchangeRate,
+          ":",
+          transaction.exchangeRate
+        );
+      });
+      return state;
     default:
       return state;
   }

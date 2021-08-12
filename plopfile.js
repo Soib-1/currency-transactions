@@ -12,7 +12,7 @@ const config = (plop) => {
       {
         type: "addMany",
         base: "templates/page",
-        destination: "src/pages/{{name}}",
+        destination: "src/components/{{name}}",
         templateFiles: "templates/page/*.hbs",
         stripExtensions: ["hbs"],
         verbose: true,

@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { ITransaction } from "../../types/types";
+import { ITransaction, ITransactionOperations } from "../../types/types";
 
 export const changeRate = (rate: string) => {
   return (dispatch: Dispatch<Object>) => {
@@ -24,6 +24,24 @@ export const deleteTransaction = (transaction: ITransaction) => {
     dispatch({
       type: "deleteTransaction",
       payload: transaction,
+    });
+  };
+};
+
+export const updateTransaction = (transaction: ITransaction) => {
+  return (dispatch: Dispatch<Object>) => {
+    dispatch({
+      type: "updateTransaction",
+      payload: transaction,
+    });
+  };
+};
+
+export const recalculateOperations = (transactions: ITransaction[]) => {
+  return (dispatch: Dispatch<Object>) => {
+    dispatch({
+      type: "recalculateOperations",
+      payload: transactions,
     });
   };
 };

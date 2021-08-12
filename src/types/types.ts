@@ -3,4 +3,10 @@ export interface ITransaction {
   name: string;
   amount: string;
   exchangedAmount: string;
+  exchangeRate: string;
+}
+
+export interface ITransactionOperations {
+  maxTransaction: ITransaction;
+  getSumOfTransactions: number;
 }

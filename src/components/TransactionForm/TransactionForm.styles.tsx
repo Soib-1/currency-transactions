@@ -13,7 +13,12 @@ import { colors } from "./../../shared/colors";
 export const SButton = styled(Button)`
   padding: 0.5rem;
   font-weight: bold;
+  border-radius: 0.6rem;
   font-size: 1rem;
+  border: 0.1rem solid ${colors.blue};
+  &:hover {
+    background: #e6d6ff;
+  }
 `;
 export const TextLabel = styled(Box)`
   padding: 0.5rem;

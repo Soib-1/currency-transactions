@@ -1,19 +1,16 @@
 import { Box, Grid, Typography } from "@material-ui/core";
 import styled from "styled-components";
 import DeleteIcon from "@material-ui/icons/Delete";
+import { Paper } from "@material-ui/core";
+import { colors } from "./../../shared/colors";
 
 export const TransactionBox = styled(Box)`
-  display: flex;
-  justify-content: flex-end;
   padding: 0.4rem;
 `;
-export const SBox = styled(Box)`
-  background: rgb(38, 38, 163);
+export const SBox = styled(Paper)`
+  background: ${colors.blue};
   padding: 1.1rem;
-  border-radius: 0.8rem;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  border-radius: 1rem;
 `;
 export const Trash = styled(DeleteIcon)`
   color: white;
@@ -31,8 +28,9 @@ export const TransactionTitle = styled(Typography)`
   color: white;
   font-size: 1.5em;
   font-weight: bold;
+  text-align: center;
 `;
 
 export const SGrid = styled(Grid)`
-  text-align: left;
+  text-align: right;
 `;

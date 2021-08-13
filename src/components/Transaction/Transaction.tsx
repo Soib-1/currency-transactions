@@ -2,37 +2,71 @@ import * as Types from "./Transaction.types";
 import * as Styles from "./Transaction.styles";
 import { bindActionCreators } from "redux";
 import { actions } from "../../store";
-import { useDispatch } from "react-redux";
-import DeleteIcon from "@material-ui/icons/Delete";
-import { Box, Button, Grid } from "@material-ui/core";
+import { useDispatch, useSelector } from "react-redux";
+import { Button, Grid } from "@material-ui/core";
+import { RootState } from "../../store/reducers";
 
 const Transaction = ({ transaction }: Types.Props) => {
   const dispatch = useDispatch();
 
-  const { deleteTransaction } = bindActionCreators(actions, dispatch);
+  const transactions = useSelector((state: RootState) => state.transaction);
+  const { deleteTransaction, recalculateOperations } = bindActionCreators(
+    actions,
+    dispatch
+  );
+
   return (
     <Styles.TransactionBox>
-      <Styles.SBox>
-        <Styles.SGrid spacing={5}>
-          <Grid item xs={12}>
+      <Styles.SBox elevation={3}>
+        <Styles.SGrid
+          container
+          direction="row"
+          justifyContent="space-between"
+          alignItems="stretch"
+        >
+          <Grid item xs={12} sm={12}>
             <Styles.TransactionTitle>
               {transaction.name}
             </Styles.TransactionTitle>
           </Grid>
-          <Grid item xs={12}>
+          <Grid item sm={8} xs={8}>
             <Styles.TransactionText>
-              {transaction.amount + " PLN"}
+              <Grid
+                container
+                direction="row"
+                justifyContent="space-between"
+                alignItems="stretch"
+              >
+                <Grid item xs={8} sm={8}>
+                  {transaction.amount}
+                </Grid>
+                <Grid item xs={2} sm={2}>
+                  {" €"}
+                </Grid>
+              </Grid>
+            </Styles.TransactionText>
+            <Styles.TransactionText>
+              <Grid
+                container
+                direction="row"
+                justifyContent="space-between"
+                alignItems="stretch"
+              >
+                <Grid item xs={8} sm={8}>
+                  {transaction.exchangedAmount}
+                </Grid>
+                <Grid item xs={2} sm={2}>
+                  {" PLN"}
+                </Grid>
+              </Grid>
             </Styles.TransactionText>
           </Grid>
-          <Grid item xs={12}>
-            <Styles.TransactionText>
-              {transaction.exchangedAmount + " €"}
-            </Styles.TransactionText>
-          </Grid>
-          <Grid item xs={12}>
+          <Grid item sm={3}>
+            {" "}
             <Button
               onClick={() => {
                 deleteTransaction(transaction);
+                recalculateOperations(transactions);
               }}
             >
               <Styles.Trash />

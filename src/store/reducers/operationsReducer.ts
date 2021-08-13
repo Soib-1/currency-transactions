@@ -4,20 +4,20 @@ import { ITransaction, ITransactionOperations } from "../../types/types";
 const reducer = (
   state = {
     maxTransaction: {
-      name: "a",
-      amount: "0",
-      exchangedAmount: "0",
+      name: "No data",
+      amount: "0.00",
+      exchangedAmount: "0.00",
     } as ITransaction,
-    getSumOfTransactions: 0,
+    getSumOfTransactions: 0.0,
   } as ITransactionOperations,
   action: PayloadAction<ITransaction[]>
 ) => {
   switch (action.type) {
     case "recalculateOperations":
-      let temp_amount = 0;
+      console.log(state, action);
+      let temp_amount = -1;
       let temp_idx = 0;
       state.getSumOfTransactions = 0;
-      console.log(action.payload);
       if (action.payload.length > 0) {
         action.payload.forEach((transaction, index) => {
           state.getSumOfTransactions += +transaction.amount;

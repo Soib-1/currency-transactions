@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { ITransaction, ITransactionOperations } from "../../types/types";
+import { ITransaction } from "../../types/types";
 
 export const changeRate = (rate: string) => {
   return (dispatch: Dispatch<Object>) => {

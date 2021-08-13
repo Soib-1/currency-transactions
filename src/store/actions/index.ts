@@ -36,12 +36,3 @@ export const updateTransaction = (transaction: ITransaction) => {
     });
   };
 };
-
-export const recalculateOperations = (transactions: ITransaction[]) => {
-  return (dispatch: Dispatch<Object>) => {
-    dispatch({
-      type: "recalculateOperations",
-      payload: transactions,
-    });
-  };
-};

@@ -10,10 +10,7 @@ const Transaction = ({ transaction }: Types.Props) => {
   const dispatch = useDispatch();
 
   const transactions = useSelector((state: RootState) => state.transaction);
-  const { deleteTransaction, recalculateOperations } = bindActionCreators(
-    actions,
-    dispatch
-  );
+  const { deleteTransaction } = bindActionCreators(actions, dispatch);
 
   return (
     <Styles.TransactionBox>
@@ -66,7 +63,6 @@ const Transaction = ({ transaction }: Types.Props) => {
             <Button
               onClick={() => {
                 deleteTransaction(transaction);
-                recalculateOperations(transactions);
               }}
             >
               <Styles.Trash />

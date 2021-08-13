@@ -20,12 +20,7 @@ const Homepage = () => {
   const { changeRate } = bindActionCreators(actions, dispatch);
 
   const [{ data, loading, error }] = useAxios(euro2pln);
-  if (loading)
-    return (
-      <Styles.LoadingContainer>
-        <CircularProgress />
-      </Styles.LoadingContainer>
-    );
+  if (loading) return <CircularProgress />;
   if (error) return <p>Error</p>;
 
   exRate === "-" && changeRate(data.result);

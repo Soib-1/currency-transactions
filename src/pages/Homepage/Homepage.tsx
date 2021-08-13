@@ -9,6 +9,7 @@ import { Container, Grid } from "@material-ui/core";
 import Transaction from "./../../components/Transaction";
 import TransactionForm from "../../components/TransactionForm/TransactionForm";
 import TransactionsInfo from "../../components/TransactionsInfo/index";
+import { CircularProgress } from "@material-ui/core";
 
 const Homepage = () => {
   const exRate = useSelector((state: RootState) => state.exchange);
@@ -19,7 +20,12 @@ const Homepage = () => {
   const { changeRate } = bindActionCreators(actions, dispatch);
 
   const [{ data, loading, error }] = useAxios(euro2pln);
-  if (loading) return <p>Loading...</p>;
+  if (loading)
+    return (
+      <Styles.LoadingContainer>
+        <CircularProgress />
+      </Styles.LoadingContainer>
+    );
   if (error) return <p>Error</p>;
 
   exRate === "-" && changeRate(data.result);

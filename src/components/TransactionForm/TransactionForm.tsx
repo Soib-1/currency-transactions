@@ -12,7 +12,6 @@ const TransactionForm = () => {
   const [transactionName, setTransactionName] = useState("");
   const [transactionAmount, setTransactionAmount] = useState("");
   const exRate = useSelector((state: RootState) => state.exchange);
-  const transactions = useSelector((state: RootState) => state.transaction);
 
   const dispatch = useDispatch();
 

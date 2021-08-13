@@ -2,14 +2,12 @@ import * as Types from "./Transaction.types";
 import * as Styles from "./Transaction.styles";
 import { bindActionCreators } from "redux";
 import { actions } from "../../store";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Button, Grid } from "@material-ui/core";
-import { RootState } from "../../store/reducers";
 
 const Transaction = ({ transaction }: Types.Props) => {
   const dispatch = useDispatch();
 
-  const transactions = useSelector((state: RootState) => state.transaction);
   const { deleteTransaction } = bindActionCreators(actions, dispatch);
 
   return (
